@@ -14,7 +14,7 @@ class Bot():
 
     def __init__(self, api_key):
         if not api_key:
-            raise(ValueError("Токен не указан"))
+            raise(ValueError("Token not specified"))
         self.api_key = api_key
         # self.user_id = user_id
         self.bot = telegram.Bot(token=api_key)
@@ -33,16 +33,16 @@ class Bot():
 
     def create_timer(self, timeout_secs, callback, *args, **kwargs):
         if not callable(callback):
-            raise TypeError('Ожидаем функцию на вход')
+            raise TypeError('Waiting for a function to enter')
         if not timeout_secs:
-            raise TypeError("Не могу запустить таймер на None секунд")
+            raise TypeError("Can't start timer for None seconds")
         timer3.apply_after(timeout_secs * 1000, callback, args=args, kwargs=kwargs)
 
     def create_countdown(self, timeout_secs, callback, **kwargs):
         if not callable(callback):
-            raise TypeError('Ожидаем функцию на вход')
+            raise TypeError('Waiting for a function to enter')
         if not timeout_secs:
-            raise TypeError("Не могу запустить таймер на None секунд")
+            raise TypeError("Can't start timer for None seconds")
 
         def callback_wrapper(**kwargs):
             now_timestamp = datetime.datetime.now().timestamp()
@@ -59,7 +59,7 @@ class Bot():
 
     def wait_for_msg(self, callback):
         if not callable(callback):
-            raise TypeError('Ожидаем функцию на вход')
+            raise TypeError('Waiting for a function to enter.')
 
         def handle_text(bot, update):
             users_reply = update.message.text
